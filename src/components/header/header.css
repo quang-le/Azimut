@@ -1,0 +1,29 @@
+header{
+    background-color:darkcyan;
+    height: 30px;
+    flex-direction: row;
+    
+}
+#headerFiller{
+    
+    width: 50%;
+    height:100%;
+    float:left;
+    text-align: left;
+    font-size: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding-left:20px;
+}
+#buttonWrap{
+    height:100%;
+    width:40%;
+    float:right;
+}
+#login, #signin{
+    background-color: darkgoldenrod;
+    height:100%;
+    border:none;
+    display: inline-block;
+   
+    
+}

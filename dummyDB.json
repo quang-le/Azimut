@@ -1,0 +1,63 @@
+{
+    "username":"Ulric",
+    "map-options":{
+        "scale":17,
+        "center":{
+            "mode":"coordinates",
+            "coords":{
+                "lat":50.826196548580455,"lng":4.371236980148296
+            },
+            "location":{
+                "city":"Bruxelles",
+                "country":"Belgique"
+            }   
+        }
+    },
+    "saved-paths":{
+        "myPath1":{
+            "coordinates":[
+                {"lat":50.826196548580455,"lng":4.371236980148296},
+                {"lat":50.82603389701739,"lng":4.372181117721539},
+                {"lat":50.82552560723044,"lng":4.371430099197369},
+                {"lat":50.82547816656797,"lng":4.372417152114849}]
+        },
+        "myPath2":{
+            "coordinates":[
+                {"lat":50.824142465810176,"lng":4.373427629470825},
+                {"lat":50.82433279880005,"lng":4.3723849656066704},
+                {"lat":50.82461744903484,"lng":4.372824847885113},
+                {"lat":50.824732664112666,"lng":4.372095287033062},
+                {"lat":50.82513930329129,"lng":4.372578084655743}
+            ]
+        }
+    }
+}
+
+{
+    "username":"Thibault",
+    "map-options":{
+        "scale":14,
+        "center":{
+            "mode":"location",
+            "coords":{
+                "lat":50.826196548580455,"lng":4.371236980148296
+            },
+            "location":{
+                "city":"Bruxelles",
+                "country":"Belgique"
+            }   
+        }
+    },
+    "saved-paths":{
+        "myPath1":{
+            "coordinates":[
+                {"lat":50.9,"lng":4.4},
+                {"lat":50.8,"lng":4.3},
+                {"lat":50.825,"lng":4.371},
+                {"lat":50.827,"lng":4.374}]
+        }  
+    }
+}
+
+
+
