@@ -7,6 +7,7 @@ import './components/footer/footer.css';
 import Pathmaker from './components/Pathmaker/Pathmaker';
 import Map from './components/Map/Map2';
 import 'typeface-roboto';
+import SignUp from './components/SignUp/SignUp';
 
 
 
@@ -89,7 +90,9 @@ constructor(props) {
             />
           </div>
           <Pathmaker coords={this.state}/>
+          
         </div>
+        <SignUp/>
         <Footer/>
       </div>
     );
