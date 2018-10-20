@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import Header from './components/header/Header';
+//import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import './components/footer/footer.css';
 import Pathmaker from './components/Pathmaker/Pathmaker';
@@ -62,7 +62,7 @@ constructor(props) {
     
     return (
       <div className="App">
-        <Header/>
+        {/* <Header/> */}
         <div>
           <div className="mapWrap">
             <Map
