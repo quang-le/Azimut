@@ -90,9 +90,7 @@ constructor(props) {
             />
           </div>
           <Pathmaker coords={this.state}/>
-          
         </div>
-        <SignUp/>
         <Footer/>
       </div>
     );

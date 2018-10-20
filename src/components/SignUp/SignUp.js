@@ -2,13 +2,19 @@ import React,{Component} from 'react';
 //import Auth from '../Backend/Auth';
 import firebase from 'firebase';
 import fb from '../Backend/FB-Config';
+import {Link} from 'react-router-dom';
 
 
 export default class SignUp extends Component{
+constructor(props) {
+  super(props);
+  this.state={user:"",}
+  ;
+}
+
   login(){
     const authy=firebase.auth();
     document.getElementById('register').addEventListener('click', function(){
-      console.log('click');
       let email= document.getElementById('registermail').value;
       let password= document.getElementById('registerpwd').value;
 
@@ -22,36 +28,55 @@ export default class SignUp extends Component{
           } else {
           alert(errorMessage);
           }
-          console.log(error);
+          //console.log(error);
           // [END_EXCLUDE]
       });
       console.log('all done')
-      console.log(authy.currentUser.email)//display last signed in user. doesn not update on adding user
+      //console.log(authy.currentUser.email)//display last signed in user. does not update on adding user
     })
   };
 
-  loginListener(){
-    const authy=firebase.auth();
-    authy.onAuthStateChanged(function(user) {
+  componentWillUnmount(){
+    let self=this;
+    let unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
+      unsubscribe();
       if (user) {
-        console.log(authy.currentUser.email)//display user that just signed in
-      } else {
-        console.log('No user is signed in')
+        self.setState({user:firebase.auth().currentUser.email});
       }
     });
   }
+  
+  componentDidMount(){ 
+    let self=this
+    self.login();
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        console.log(firebase.auth().currentUser.email)//display user that just signed in
+        self.setState({user:firebase.auth().currentUser.email});
+      }
+    }); 
+    console.log(self.user);
+}
 
 
 
-  componentDidMount(){
-    this.login();
-    this.loginListener();
+display(){
+  if (this.state.user){
+    return (
+      <button><Link to="/profile">Go to profile, {this.state.user}</Link></button>
+    )
+  }
+  else {
+    return (
+      <div> Veuillez vous enregistrer</div>
+    )
+  }
 }
   render(){
+    
 
     return(
       <div>
-        
         <form>
           <label>User name</label>
           <input id="registeruser" placeholder="Choose a user name"></input>
@@ -61,6 +86,7 @@ export default class SignUp extends Component{
           <input id="registerpwd" type="password" placeholder="Choose a strong password"></input>
           <button type="button" id="register">Register</button>
         </form>
+        {this.display()}
       </div>
     )
   }

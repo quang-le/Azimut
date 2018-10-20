@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import Preferences from './components/Preferences/Preferences';
 import SignUp from './components/SignUp/SignUp';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -15,6 +16,8 @@ ReactDOM.render(
             <Route exact path= "/" component ={App}/>
             <Route exact path="/signup" component={SignUp}/>
             <Route exact path="/profile" component ={Preferences}/>
+            <Route path="/" component={Footer}/>
+            
         </div>
     </Router>
     , document.getElementById('root'));
