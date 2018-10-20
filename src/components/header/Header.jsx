@@ -1,25 +1,18 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import fb from '../Backend/FB-Config';
-
-
 
 export default class Header extends Component{
   constructor(props) {
     super(props);
     this.state={
       user:""
-    }
-    
+    } 
   }
 
   headerDisplay(){
@@ -28,9 +21,7 @@ export default class Header extends Component{
         <div>
         <AppBar position="static">
           <Toolbar>
-            <IconButton color="inherit" aria-label="Menu">
-              <MenuIcon />
-            </IconButton>
+          <Button color="inherit"><Link to = "/">Home</Link></Button>
             <Typography variant="h2" color="inherit" >
               Azimut
             </Typography>
@@ -45,9 +36,7 @@ export default class Header extends Component{
         <div >
           <AppBar position="static">
             <Toolbar>
-              <IconButton  color="inherit" aria-label="Menu">
-                <MenuIcon />
-              </IconButton>
+            <Button color="inherit"><Link to = "/">Home</Link></Button>
               <Typography variant="h2" color="inherit" >
                 Azimut
               </Typography>
@@ -58,8 +47,8 @@ export default class Header extends Component{
         </div>
       );
     }
-
   }
+
   componentDidMount(){
     let self=this;
     firebase.auth().onAuthStateChanged(function(user) {
@@ -74,14 +63,11 @@ export default class Header extends Component{
    console.log(self.user);
  }
 
-  render(){
-
-    
+  render(){  
     return(
       <div>{this.headerDisplay()}</div>
     )
-  }
-  
+  } 
 }
 
 
