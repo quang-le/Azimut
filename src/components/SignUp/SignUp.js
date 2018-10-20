@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
-//import Auth from '../Backend/Auth';
 import firebase from 'firebase';
 import fb from '../Backend/FB-Config';
 import {Link} from 'react-router-dom';
+//import Auth from '../Backend/Auth';
 
 
 export default class SignUp extends Component{
@@ -12,7 +12,7 @@ constructor(props) {
   ;
 }
 
-  login(){
+  signUp(){
     const authy=firebase.auth();
     document.getElementById('register').addEventListener('click', function(){
       let email= document.getElementById('registermail').value;
@@ -48,7 +48,7 @@ constructor(props) {
   
   componentDidMount(){ 
     let self=this
-    self.login();
+    self.signUp();
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         console.log(firebase.auth().currentUser.email)//display user that just signed in
@@ -58,8 +58,6 @@ constructor(props) {
     console.log(self.user);
 }
 
-
-
 display(){
   if (this.state.user){
     return (
@@ -68,13 +66,11 @@ display(){
   }
   else {
     return (
-      <div> Veuillez vous enregistrer</div>
+      <div> Register new user</div>
     )
   }
 }
   render(){
-    
-
     return(
       <div>
         <form>
