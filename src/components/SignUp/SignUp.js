@@ -5,9 +5,8 @@ import fb from '../Backend/FB-Config';
 
 
 export default class SignUp extends Component{
-  componentDidMount(){
+  login(){
     const authy=firebase.auth();
-
     document.getElementById('register').addEventListener('click', function(){
       console.log('click');
       let email= document.getElementById('registermail').value;
@@ -18,7 +17,7 @@ export default class SignUp extends Component{
           var errorCode = error.code;
           var errorMessage = error.message;
           // [START_EXCLUDE]
-          if (errorCode == 'auth/weak-password') {
+          if (errorCode ==='auth/weak-password') {
           alert('The password is too weak.');
           } else {
           alert(errorMessage);
@@ -27,7 +26,26 @@ export default class SignUp extends Component{
           // [END_EXCLUDE]
       });
       console.log('all done')
+      console.log(authy.currentUser.email)//display last signed in user. doesn not update on adding user
     })
+  };
+
+  loginListener(){
+    const authy=firebase.auth();
+    authy.onAuthStateChanged(function(user) {
+      if (user) {
+        console.log(authy.currentUser.email)//display user that just signed in
+      } else {
+        console.log('No user is signed in')
+      }
+    });
+  }
+
+
+
+  componentDidMount(){
+    this.login();
+    this.loginListener();
 }
   render(){
 
