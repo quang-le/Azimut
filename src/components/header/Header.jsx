@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -8,41 +8,82 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {Link} from 'react-router-dom';
+import firebase from 'firebase';
+import fb from '../Backend/FB-Config';
 
-const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-};
 
-function ButtonAppBar(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h2" color="inherit" className={classes.grow}>
-            Azimut
-          </Typography>
-          <Button color="inherit"><Link to = "/signup">SignUp</Link></Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+
+export default class Header extends Component{
+  constructor(props) {
+    super(props);
+    this.state={
+      user:""
+    }
+    
+  }
+
+  headerDisplay(){
+    if (this.state.user){
+      return (
+        <div>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h2" color="inherit" >
+              Azimut
+            </Typography>
+            <Button color="inherit"><Link to = "/logout">Log Out</Link></Button>
+          </Toolbar>
+        </AppBar>
+      </div>
+      )
+    }
+    else{
+      return (
+        <div >
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton  color="inherit" aria-label="Menu">
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h2" color="inherit" >
+                Azimut
+              </Typography>
+              <Button color="inherit"><Link to = "/signup">Sign Up</Link></Button>
+              <Button color="inherit"><Link to = "/login">Log In</Link></Button>
+            </Toolbar>
+          </AppBar>
+        </div>
+      );
+    }
+
+  }
+  componentDidMount(){
+    let self=this;
+    firebase.auth().onAuthStateChanged(function(user) {
+     if (user) {
+       console.log(firebase.auth().currentUser.email)//display user that just signed in
+       self.setState({user:firebase.auth().currentUser.email});
+     }
+     else{
+       self.setState({user:""})
+     }
+   }); 
+   console.log(self.user);
+ }
+
+  render(){
+
+    
+    return(
+      <div>{this.headerDisplay()}</div>
+    )
+  }
+  
 }
 
-ButtonAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(ButtonAppBar);
+
+
