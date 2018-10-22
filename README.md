@@ -1,6 +1,6 @@
 # Project Azimut
 
-*last update 22/10/2018
+*last update 22/10/2018*
 
 1. Context
 Personal project for the self-directed learning phase of the BeCode training. It stemmed from a friend's request to extract coordinates from Google Maps. I decided to build a React app around it as a way to learn new technologies and because I wanted to go through the process of building an app from A to Z.
