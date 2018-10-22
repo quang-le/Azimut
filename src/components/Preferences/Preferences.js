@@ -35,6 +35,7 @@ export default class Preferences extends Component{
                 <div>
                     User name
                 </div>
+                <div>Saved Coordinates</div>
 
             </div>
         )
