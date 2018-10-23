@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import firebase from 'firebase';
 import fb from '../Backend/FB-Config';
 
@@ -21,11 +21,11 @@ export default class Header extends Component{
         <div>
         <AppBar position="static">
           <Toolbar>
-          <Button color="inherit"><Link to = "/">Home</Link></Button>
+          <NavLink to = "/"><Button color="inherit">Home</Button></NavLink>
             <Typography variant="h2" color="inherit" >
               Azimut
             </Typography>
-            <Button color="inherit"><Link to = "/logout">Log Out</Link></Button>
+            <NavLink to = "/logout"><Button color="inherit">Log Out</Button></NavLink>
           </Toolbar>
         </AppBar>
       </div>
@@ -36,12 +36,12 @@ export default class Header extends Component{
         <div >
           <AppBar position="static">
             <Toolbar>
-            <Button color="inherit"><Link to = "/">Home</Link></Button>
+            <NavLink to = "/"><Button color="inherit">Home</Button></NavLink>
               <Typography variant="h2" color="inherit" >
                 Azimut
               </Typography>
-              <Button color="inherit"><Link to = "/signup">Sign Up</Link></Button>
-              <Button color="inherit"><Link to = "/login">Log In</Link></Button>
+              <NavLink to = "/signup"><Button variant="contained" color="inherit">Sign Up</Button></NavLink>
+              <NavLink to = "/login"><Button color="inherit">Log In</Button></NavLink>
             </Toolbar>
           </AppBar>
         </div>
