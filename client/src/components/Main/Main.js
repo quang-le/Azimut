@@ -17,6 +17,8 @@ constructor(props) {
   this.state={
     "coordinates":[],
     'response':'',
+    'user':'',
+    'username':'',
   }
 }
   

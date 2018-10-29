@@ -1,3 +1,6 @@
+const express= require('express');
+const bodyParser= require('body-parser')
+const nodeApp=express();
 
 let url = "mongodb://localhost:27017/";
 const port = process.env.PORT || 3001;
@@ -19,12 +22,12 @@ nodeApp.get('/api/hello', (req, res) => {
   });
 
 
-nodeApp.put('/createuser', (req,res)=>{
+nodeApp.post('/createuser', (req,res)=>{
     //needs sanitization
     myDB.collection('users2').save(req.body,(err,result)=>{
         if (err) return console.log(err)
         console.log('saved to database')
-        res.send(result);
+        res.send({result});
     })
 });
 

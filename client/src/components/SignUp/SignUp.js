@@ -2,17 +2,18 @@ import React,{Component} from 'react';
 import firebase from 'firebase';
 import fb from '../Backend/FB-Config';
 import {Link} from 'react-router-dom';
-//import fetcher from '../myAPI/createUser';
-//import Auth from '../Backend/Auth';
-
 
 export default class SignUp extends Component{
 constructor(props) {
   super(props);
-  this.state={user:"",}
+  this.state={
+    user:"",
+    username:"",
+    response:""
+  }
   ;
 }
-  //add consdition that user isn't already signed up
+  //add condition that user isn't already signed up
   signUp(){
     const authy=firebase.auth();
     document.getElementById('register').addEventListener('click', function(){
@@ -29,11 +30,9 @@ constructor(props) {
           } else {
           alert(errorMessage);
           }
-          //console.log(error);
           // [END_EXCLUDE]
       });
       console.log('all done')
-      //console.log(authy.currentUser.email)//display last signed in user. does not update on adding user
     })
   };
 
@@ -55,13 +54,11 @@ constructor(props) {
         console.log(firebase.auth().currentUser.email)//display user that just signed in
         self.setState({user:firebase.auth().currentUser.email});
         console.log(self.state);
+        
       }
     }); 
-    console.log(self.state.user);
     this.getUsername();
-    console.log(self.state.username);
-    // this.createUser()
-    // console.log(this.state);      
+    this.clickAPI()        
 }
 
   getUsername(){
@@ -69,36 +66,40 @@ constructor(props) {
     this.setState({username:document.getElementById("registeruser").value})
     })
   }
-
-  // createUser = async () => {
-  //   const response= await fetch('/createuser', {
-  //     method:'put',
-  //     headers:{'Content-Type': 'application/json'},
-  //     body: JSON.stringify({
-  //        'user':this.state.user,
-  //        'username':this.state.username
-
-  //       })
-  //     }
-  //   );
-  //   const body=await response.json();
-  //   if (response.status !== 200) throw Error(body.message);
-
-  //   return body;
-  // }
-
-display(){
-  if (this.state.user){
-    return (
-      <button><Link to="/profile">Go to profile, {this.state.user}</Link></button>
-    )
+  clickAPI(){
+    document.getElementById("register").addEventListener('click',e => this.callApi().then(res => this.setState({ response: res.username }))
+    .catch(err => console.log(err)) )
   }
-  else {
-    return (
-      <div> Register new user</div>
-    )
+
+  callApi = async () => {
+    const response = await fetch('/createuser',{
+      method:'post',
+      headers:{'Content-Type': 'application/json'},
+      body:JSON.stringify({
+        'user':this.state.user,
+        'username':this.state.username
+      })
+        }
+    );
+    const body = await response.json();
+
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
+  };
+
+  display(){
+    if (this.state.user){
+      return (
+        <button><Link to="/profile">Go to profile, {this.state.user}</Link></button>
+      )
+    }
+    else {
+      return (
+        <div> Register new user</div>
+      )
+    }
   }
-}
   render(){
     return(
       <div>
@@ -112,6 +113,7 @@ display(){
           <button type="button" id="register">Register</button>
         </form>
         {this.display()}
+        <p>{this.state.response}</p>
       </div>
     )
   }
