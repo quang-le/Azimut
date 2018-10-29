@@ -1,14 +1,18 @@
 import React,{Component} from 'react';
 import firebase from 'firebase';
-import fb from '../Backend/FB-Config';
+import fb from './Backend/FB-Config';
 import {Link} from 'react-router-dom';
+import createUser from './myAPI/createUser';
 //import Auth from '../Backend/Auth';
 
 
 export default class SignUp extends Component{
 constructor(props) {
   super(props);
-  this.state={user:"",}
+  this.state={
+    user:"",
+    username:"",
+  }
   ;
 }
 
@@ -56,20 +60,28 @@ constructor(props) {
       }
     }); 
     console.log(self.user);
+    this.getUsername();
+    createUser("register","click",this.state);
 }
 
-display(){
-  if (this.state.user){
-    return (
-      <button><Link to="/profile">Go to profile, {this.state.user}</Link></button>
-    )
-  }
-  else {
-    return (
-      <div> Register new user</div>
-    )
-  }
+  getUsername(){
+    document.getElementById("registeruser").addEventListener("click", e => {
+    this.setState({username:e.target.value})
+  })
 }
+
+  display(){
+    if (this.state.user){
+      return (
+        <button><Link to="/profile">Go to profile, {this.state.user}</Link></button>
+      )
+    }
+    else {
+      return (
+        <div> Register new user</div>
+      )
+    }
+  }
   render(){
     return(
       <div>
