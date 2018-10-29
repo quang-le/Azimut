@@ -1,6 +1,3 @@
-const express= require('express');
-const bodyParser= require('body-parser')
-const nodeApp=express();
 
 let url = "mongodb://localhost:27017/";
 const port = process.env.PORT || 3001;

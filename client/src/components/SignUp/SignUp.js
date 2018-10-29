@@ -9,10 +9,7 @@ import {Link} from 'react-router-dom';
 export default class SignUp extends Component{
 constructor(props) {
   super(props);
-  this.state={
-    user:"",
-    username:"",
-  }
+  this.state={user:"",}
   ;
 }
   //add consdition that user isn't already signed up
@@ -90,18 +87,18 @@ constructor(props) {
   //   return body;
   // }
 
-  display(){
-    if (this.state.user){
-      return (
-        <button><Link to="/profile">Go to profile, {this.state.user}</Link></button>
-      )
-    }
-    else {
-      return (
-        <div> Register new user</div>
-      )
-    }
+display(){
+  if (this.state.user){
+    return (
+      <button><Link to="/profile">Go to profile, {this.state.user}</Link></button>
+    )
   }
+  else {
+    return (
+      <div> Register new user</div>
+    )
+  }
+}
   render(){
     return(
       <div>

@@ -23,7 +23,6 @@ export default class Preferences extends Component{
         console.log(self.state.user);
         
     }
-    
     render(){
         return(
             <div>

@@ -23,27 +23,26 @@ export default class Pathmaker extends Component{
 
     render(){
             // console.log(this.props.coords.coordinates);
-            // Display coordinates. Mask for now to make space for saved routes etc
-            // let coordinatesArray=this.props.coords.coordinates.map((point,index)=>{
-            //     return(
-            //         <div className="single-coord" key={"point"+index}>
-            //             <p>Coordonnées {index+1}:</p> 
-            //             <p>latitude:{point.lat} / longitude:{point.lng}</p>
-            //         </div>
-            //     )
-            // })
+            
+            let coordinatesArray=this.props.coords.coordinates.map((point,index)=>{
+                return(
+                    <div className="single-coord" key={"point"+index}>
+                        <p>Coordonnées {index+1}:</p> 
+                        <p>latitude:{point.lat} / longitude:{point.lng}</p>
+                    </div>
+                )
+            })
         
         
         return (
             <div>    
                 <div id="ui">
-
-                    {/* <section>
+                    <section>
                         <h3>Vos coordonnées</h3>
                         <div id="coord-wrap">
                             {coordinatesArray}
                         </div>
-                    </section> */}
+                    </section>
                     <section><h3>Coordonnées au format JSON</h3>
                         <textarea id="coordinates"></textarea>
                         <button type="button" id="confirm">Confirmer la trajectoire</button>
