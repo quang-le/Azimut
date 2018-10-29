@@ -14,26 +14,26 @@ constructor(props) {
   ;
 }
   //add condition that user isn't already signed up
-  signUp(){
-    const authy=firebase.auth();
-    document.getElementById('register').addEventListener('click', function(){
-      let email= document.getElementById('registermail').value;
-      let password= document.getElementById('registerpwd').value;
-
-      authy.createUserWithEmailAndPassword(email, password).catch(function(error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // [START_EXCLUDE]
-          if (errorCode ==='auth/weak-password') {
-          alert('The password is too weak.');
-          } else {
-          alert(errorMessage);
-          }
-          // [END_EXCLUDE]
-      });
+  signUp(e){
+    e.preventDefault();
+      let email=e.target.email.value,
+      password=e.target.password.value, 
+      username=e.target.username.value;
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(this.setState({user:email, username:username}))
+        .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // [START_EXCLUDE]
+            if (errorCode ==='auth/weak-password') {
+            alert('The password is too weak.');
+            } else {
+            alert(errorMessage);
+            }
+            // [END_EXCLUDE]
+        });
       console.log('all done')
-    })
   };
 
   componentWillUnmount(){
@@ -103,14 +103,14 @@ constructor(props) {
   render(){
     return(
       <div>
-        <form>
+        <form onSubmit={this.signUp()}>
           <label>User name</label>
-          <input id="registeruser" placeholder="Choose a user name"></input>
+          <input id="registeruser" name="username" placeholder="Choose a user name"></input>
           <label>Email</label>
-          <input id = "registermail" type="email" placeholder="Enter your email"></input>
+          <input id = "registermail" type="email" name="email" placeholder="Enter your email"></input>
           <label>Password</label>
-          <input id="registerpwd" type="password" placeholder="Choose a strong password"></input>
-          <button type="button" id="register">Register</button>
+          <input id="registerpwd" name="password" type="password" placeholder="Choose a strong password"></input>
+          <button type="submit" id="register">Register</button>
         </form>
         {this.display()}
         <p>{this.state.response}</p>
