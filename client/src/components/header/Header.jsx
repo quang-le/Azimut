@@ -60,7 +60,7 @@ export default class Header extends Component{
        self.setState({user:""})
      }
    }); 
-   console.log(self.user);
+   console.log(self.state.user);
  }
 
   render(){  

@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
 import firebase from 'firebase';
-import fb from './Backend/FB-Config';
+import fb from '../Backend/FB-Config';
 import {Link} from 'react-router-dom';
-import createUser from './myAPI/createUser';
+//import fetcher from '../myAPI/createUser';
 //import Auth from '../Backend/Auth';
 
 
@@ -15,7 +15,7 @@ constructor(props) {
   }
   ;
 }
-
+  //add consdition that user isn't already signed up
   signUp(){
     const authy=firebase.auth();
     document.getElementById('register').addEventListener('click', function(){
@@ -57,18 +57,38 @@ constructor(props) {
       if (user) {
         console.log(firebase.auth().currentUser.email)//display user that just signed in
         self.setState({user:firebase.auth().currentUser.email});
+        console.log(self.state);
       }
     }); 
-    console.log(self.user);
+    console.log(self.state.user);
     this.getUsername();
-    createUser("register","click",this.state);
+    console.log(self.state.username);
+    // this.createUser()
+    // console.log(this.state);      
 }
 
   getUsername(){
-    document.getElementById("registeruser").addEventListener("click", e => {
-    this.setState({username:e.target.value})
-  })
-}
+    document.getElementById("register").addEventListener("click", e => {
+    this.setState({username:document.getElementById("registeruser").value})
+    })
+  }
+
+  // createUser = async () => {
+  //   const response= await fetch('/createuser', {
+  //     method:'put',
+  //     headers:{'Content-Type': 'application/json'},
+  //     body: JSON.stringify({
+  //        'user':this.state.user,
+  //        'username':this.state.username
+
+  //       })
+  //     }
+  //   );
+  //   const body=await response.json();
+  //   if (response.status !== 200) throw Error(body.message);
+
+  //   return body;
+  // }
 
   display(){
     if (this.state.user){

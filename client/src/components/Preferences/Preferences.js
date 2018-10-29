@@ -20,7 +20,8 @@ export default class Preferences extends Component{
             self.setState({user:firebase.auth().currentUser.email});
           }
         }); 
-        console.log(self.user);
+        console.log(self.state.user);
+        
     }
     
     render(){

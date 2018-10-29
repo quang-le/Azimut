@@ -3,6 +3,7 @@ const bodyParser= require('body-parser')
 const nodeApp=express();
 
 let url = "mongodb://localhost:27017/";
+const port = process.env.PORT || 3001;
 
 var myDB;//global var for the DB, not so clean
 
@@ -11,18 +12,22 @@ nodeApp.use(bodyParser.urlencoded({extended:true}));
 mongodb.connect(url, function(err,db,){
     if (err) throw err;
     myDB=db.db("Azimut");
-    nodeApp.listen(3001, function(){
-        console.log ("listening to 3001")
+    nodeApp.listen(port, function(){
+        console.log ('listening to '+ port)
     });
 })
 
+nodeApp.get('/api/hello', (req, res) => {
+    res.send({ express: 'Hello From Express' });
+  });
 
-nodeApp.post('/createuser', (req,res)=>{
+
+nodeApp.put('/createuser', (req,res)=>{
     //needs sanitization
     myDB.collection('users2').save(req.body,(err,result)=>{
         if (err) return console.log(err)
         console.log('saved to database')
-        res.redirect('/')
+        res.send(result);
     })
 });
 

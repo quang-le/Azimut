@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-import '../App.css';
+import '../../App.css';
 //import Header from './components/header/Header';
-import Footer from './footer/Footer';
-import './components/footer/footer.css';
-import Pathmaker from './Pathmaker/Pathmaker';
-import Map from './Map/Map2';
+//import Footer from '../footer/Footer';
+import '../footer/footer.css';
+import Pathmaker from '../Pathmaker/Pathmaker';
+import Map from '../Map/Map2';
 import 'typeface-roboto';
-import SignUp from './SignUp/SignUp';
+import SignUp from '../SignUp/SignUp';
 
 
 
@@ -15,7 +15,8 @@ class App extends Component {
 constructor(props) {
   super(props);
   this.state={
-    "coordinates":[]
+    "coordinates":[],
+    'response':'',
   }
 }
   
@@ -58,6 +59,22 @@ constructor(props) {
     return json_data;
   }
 
+  //test code for API--> working
+  componentDidMount() {
+    this.callApi()
+      .then(res => this.setState({ response: res.express }))
+      .catch(err => console.log(err));
+  }
+
+  callApi = async () => {
+    const response = await fetch('/api/hello');
+    const body = await response.json();
+
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
+  };
+
   render() {
     
     return (
@@ -91,7 +108,8 @@ constructor(props) {
           </div>
           <Pathmaker coords={this.state}/>
         </div>
-        <Footer/>
+        {/* <Footer/> */}
+        <p>{this.state.response}</p>
       </div>
     );
   }

@@ -1,17 +1,15 @@
-import fb from './Backend/FB-Config.js';
+import fb from '../Backend/FB-Config.js';
 
-//elementID & eventType are strings. data will be the state
-function createUser(elementID, eventType, data){
-    document.getElementById(elementID).addEventListener(eventType, fetcher(data) )
-}
-function fetcher(data){
+async function fetcher(user,username){
     fetch('/createuser', {
         method:'post',
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify({
-           data
+           'user':user,
+           'username':username
+
           })
     })
 }
 
-export default createUser();
+export default fetcher();
