@@ -27,7 +27,7 @@ nodeApp.get('/api/hello', (req, res) => {
 
 nodeApp.post('/createuser', (req,res)=>{
     //needs sanitization
-    myDB.collection('users2').save(req.body,(err,result)=>{
+    myDB.collection('users2').insertOne(req.body,(err,result)=>{
         if (err) return console.log(err)
         console.log('saved to database')
         res.send(result);
