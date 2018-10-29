@@ -8,7 +8,10 @@ const port = process.env.PORT || 3001;
 var myDB;//global var for the DB, not so clean
 
 let mongodb = require ('mongodb').MongoClient;
+
 nodeApp.use(bodyParser.urlencoded({extended:true}));
+nodeApp.use(bodyParser.json());
+
 mongodb.connect(url, function(err,db,){
     if (err) throw err;
     myDB=db.db("Azimut");
@@ -27,7 +30,7 @@ nodeApp.post('/createuser', (req,res)=>{
     myDB.collection('users2').save(req.body,(err,result)=>{
         if (err) return console.log(err)
         console.log('saved to database')
-        res.send({result});
+        res.send(result);
     })
 });
 

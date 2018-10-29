@@ -7,8 +7,8 @@ export default class SignUp extends Component{
 constructor(props) {
   super(props);
   this.state={
-    user:"",
-    username:"",
+    user:"test",
+    username:"tester",
     response:""
   }
   ;
@@ -16,11 +16,16 @@ constructor(props) {
   //add condition that user isn't already signed up
   signUp(e){
     e.preventDefault();
-      let email=e.target.email.value,
-      password=e.target.password.value, 
-      username=e.target.username.value;
+      let email=e.target.email.value;
+      let password=e.target.password.value; 
+      let username=e.target.username.value;
       firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(this.setState({user:email, username:username}))
+        .then(()=>{
+          this.setState({user:email, username:username}, ()=>{
+            this.callApi();
+          });
+          console.log(this.state);
+        })
         .catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -36,40 +41,40 @@ constructor(props) {
       console.log('all done')
   };
 
-  componentWillUnmount(){
-    let self=this;
-    let unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
-      unsubscribe();
-      if (user) {
-        self.setState({user:firebase.auth().currentUser.email});
-      }
-    });
-  }
+  // componentWillUnmount(){
+  //   let self=this;
+  //   let unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
+  //     unsubscribe();
+  //     if (user) {
+  //       self.setState({user:firebase.auth().currentUser.email});
+  //     }
+  //   });
+  // }
   
-  componentDidMount(){ 
-    let self=this
-    self.signUp();
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        console.log(firebase.auth().currentUser.email)//display user that just signed in
-        self.setState({user:firebase.auth().currentUser.email});
-        console.log(self.state);
+//   componentDidMount(){ 
+//     let self=this
+//     self.signUp();
+//     firebase.auth().onAuthStateChanged(function(user) {
+//       if (user) {
+//         console.log(firebase.auth().currentUser.email)//display user that just signed in
+//         self.setState({user:firebase.auth().currentUser.email});
+//         console.log(self.state);
         
-      }
-    }); 
-    this.getUsername();
-    this.clickAPI()        
-}
+//       }
+//     }); 
+//     this.getUsername();
+//     this.clickAPI()        
+// }
 
-  getUsername(){
-    document.getElementById("register").addEventListener("click", e => {
-    this.setState({username:document.getElementById("registeruser").value})
-    })
-  }
-  clickAPI(){
-    document.getElementById("register").addEventListener('click',e => this.callApi().then(res => this.setState({ response: res.username }))
-    .catch(err => console.log(err)) )
-  }
+  // getUsername(){
+  //   document.getElementById("register").addEventListener("click", e => {
+  //   this.setState({username:document.getElementById("registeruser").value})
+  //   })
+  // }
+  // clickAPI(){
+  //   document.getElementById("register").addEventListener('click',e => this.callApi().then(res => this.setState({ response: res.username }))
+  //   .catch(err => console.log(err)) )
+  // }
 
   callApi = async () => {
     const response = await fetch('/createuser',{
@@ -91,7 +96,7 @@ constructor(props) {
   display(){
     if (this.state.user){
       return (
-        <button><Link to="/profile">Go to profile, {this.state.user}</Link></button>
+        <button><Link to="/profile">Go to profile, {this.state.username}</Link></button>
       )
     }
     else {
@@ -103,7 +108,7 @@ constructor(props) {
   render(){
     return(
       <div>
-        <form onSubmit={this.signUp()}>
+        <form onSubmit={(e) =>this.signUp(e)}>
           <label>User name</label>
           <input id="registeruser" name="username" placeholder="Choose a user name"></input>
           <label>Email</label>
