@@ -3,10 +3,6 @@ import firebase from 'firebase';
 import fb from '../Backend/FB-Config';
 
 export default class SavePath extends Component{
-    constructor(props) {
-        super(props);
-        
-    }
 
     SavePath(e){
         e.preventDefault();
