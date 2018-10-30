@@ -34,6 +34,23 @@ nodeApp.post('/createuser', (req,res)=>{
     })
 });
 
+nodeApp.post('/addroute', (req,res)=>{
+    //needs sanitization
+   
+    myDB.collection('users2')
+    .updateOne(
+        {"user":req.body.user},
+        {$setOnInsert:{"name":req.body.pathname,"coordinates":req.body.coordinates}},
+        {upsert:true});
+    });
+
+    
+
+// nodeApp.post('/updateroute',(req,res)=>{
+//     //needs sanitization
+//     myDB.collection
+// })
+
 console.log("ta mère en string");
 
 // nodeApp.get('/',(req,res)=>{

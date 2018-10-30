@@ -21,7 +21,7 @@ export default class Header extends Component{
         <div>
         <AppBar position="static">
           <Toolbar>
-          <NavLink to = "/"><Button color="inherit">Home</Button></NavLink>
+          <NavLink to = "/userlogged"><Button color="inherit">Home</Button></NavLink>
             <Typography variant="h2" color="inherit" >
               Azimut
             </Typography>
