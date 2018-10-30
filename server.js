@@ -34,6 +34,14 @@ nodeApp.post('/createuser', (req,res)=>{
     })
 });
 
+//display route coordinates
+nodeApp.post('/displayroutes',(req,res)=>{
+    myDB.collection('users2').find(req.body.user, {"path":1})
+        
+    res.send(result)
+    
+})
+
 
 //update route
 nodeApp.post('/updateroute', (req,res)=>{
@@ -44,7 +52,7 @@ nodeApp.post('/updateroute', (req,res)=>{
         {$set:{"name":req.body.pathname,"coordinates":req.body.coordinates}},
         {upsert:true});
     });
-
+//add route. doesn't filter if name already exists
 nodeApp.post('/addroute', (req,res)=>{
     //needs sanitization
     myDB.collection('users2')

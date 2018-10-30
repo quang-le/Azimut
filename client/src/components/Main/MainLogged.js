@@ -4,6 +4,7 @@ import '../footer/footer.css';
 import Pathmaker from '../Pathmaker/Pathmaker';
 import Map from '../Map/Map2';
 import SavePath from '../myAPI/SavePath';
+import DisplayRoutes from '../myAPI/DisplayRoutes';
 import 'typeface-roboto';
 import firebase from 'firebase';
 
@@ -100,6 +101,7 @@ constructor(props) {
           </div>
           <Pathmaker coords={this.state}/>
           <SavePath user={this.state.user} path={this.state.coordinates}/>
+          <DisplayRoutes user={this.state.user}/>
         </div>
       </div>
     );

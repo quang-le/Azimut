@@ -26,11 +26,11 @@ export default class SavePath extends Component{
             'coordinates':this.state.coordinates  
           })
         });
-        const body = await response.json();
+        // const body = await response.json();
     
-        if (response.status !== 200) throw Error(body.message);
-        console.log(body);
-        return body;
+        // if (response.status !== 200) throw Error(body.message);
+        // console.log(body);
+        // return body;
       };
     
     render(){
