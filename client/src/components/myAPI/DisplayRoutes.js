@@ -24,7 +24,7 @@ export default class DisplayRoutes extends Component{
         const response = await fetch('/displayroutes',{
           method:'post',
           headers:{'Content-Type': 'application/json'},
-          body:JSON.stringify({  
+          body:JSON.stringify({
             'user':this.props.user,
           })
         });
@@ -32,6 +32,7 @@ export default class DisplayRoutes extends Component{
     
         if (response.status !== 200) throw Error(body.message);
         console.log(body);
+        console.log(this.state.paths)
         let toState=this.extractPathFromJSON(body);
         this.setState({reqSent:true,paths:toState}, ()=>{console.log(this.state.paths)});
         return body;
