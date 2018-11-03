@@ -18,6 +18,8 @@
 - 17/10/2018: attended [Cédric Fournier's Firebase workshop](https://github.com/Cedric-Fournier/Becode-Workshop-Firebase) at BeCode
 - 19/10/2018: implemented routes with react-router
 - 20/10/2018: implemented login with Firebase
+- 31/10/2018: implemented create and save new route
+- 03/11/2018: implemented display routes, update route name and delete route
 
 4. Learning outcomes
 
@@ -28,15 +30,16 @@
 5. Current bugs
 
 - Routing: routing + firebase auth creat a memory leak error
-- conflict between react-router and Material UI: router's components used with Material UI component cancel Material's styling
+- conflict between react-router and Material UI: router's components used with Material UI component cancel Material's styling --> solved by restting CSS
+- possible to create new user while already logged in
+- logging out doesn't always change the button display
+- creating new route doensn't update route display in real time
+- user creating needs to be uodted to avoid bugs in other db calls (errors due to undefined fields)
 
 6. Features to add
 
-- CRUD in the MungoDB after login/signup
 - Use info stored in DB to display coordinates on Google Maps
 - Use info stored in DB to set up Google Maps preferences (e.g.zoom level)
-- Display saved coordinates for logged in users
-- Allow logged in users to save new coordinates
 - Create "copy" button to copy JSON displayed in text-area
 - Implement automatic redirections on login and log out
 - General Layout
