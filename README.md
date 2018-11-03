@@ -1,10 +1,12 @@
 # Project Azimut
 
-*last update 22/10/2018*
+*last update 03/11/2018*
 
 1. Context:
 
 - Personal project for the self-directed learning phase of the BeCode training. It stemmed from a friend's request to extract coordinates from Google Maps. I decided to build a React app around it as a way to learn new technologies and because I wanted to go through the process of building an app from A to Z.
+
+*This project is now on hold. I have made a barebones but working prototype and learned as much as I could working on it by myself. I need to focus on something else before I can give this app some (much needed) polish*
 
 2. Stack
 - Learn: Node, MongoDB,  Material UI, react-router, Express, Google Maps API.
