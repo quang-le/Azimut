@@ -52,11 +52,16 @@ nodeApp.post('/displayroutes',(req,res)=>{
 nodeApp.post('/updateroute', (req,res)=>{
     //needs sanitization
     myDB.collection('users2')
-    .updateOne(
-        {"user":req.body.user},
-        {$set:{"name":req.body.pathname,"coordinates":req.body.coordinates}},
+    .findOneAndUpdate(
+        {"user":req.body.user,
+        "path.name":req.body.oldName
+    },
+        {$set:{"path.name":req.body.newName}},
         {upsert:true});
+    res.send('doc updated');
     });
+
+
 //add route. doesn't filter if name already exists
 nodeApp.post('/addroute', (req,res)=>{
     //needs sanitization
@@ -67,6 +72,14 @@ nodeApp.post('/addroute', (req,res)=>{
     );
 });
 
+nodeApp.delete('/deleteroute', (req,res)=>{
+    myDB.collection('users2')
+    .deleteOne(
+        {'path.name':req.body.pathName}
+    );
+    res.send('1 doc deleted');    
+});
+
     
 
 // nodeApp.post('/updateroute',(req,res)=>{
@@ -74,7 +87,6 @@ nodeApp.post('/addroute', (req,res)=>{
 //     myDB.collection
 // })
 
-console.log("ta mère en string");
 
 // nodeApp.get('/',(req,res)=>{
 //     res.sendFile('/Users/quangle/Azimut/Node_Server/index.html');
@@ -87,4 +99,4 @@ console.log("ta mère en string");
         
 //     })
    
-// })
+// }))

@@ -5,6 +5,7 @@ import SignUp from './components/SignUp/SignUp';
 import Login from './components/SignUp/Login';
 import Logout from './components/Logout/Logout';
 import Main from './components/Main/Main';
+import MainRoutes from './components/Main/MainRoutes';
 import MainLogged from './components/Main/MainLogged';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import React,{Component}from 'react';
@@ -22,6 +23,7 @@ export default class App extends Component{
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/logout" component={Logout}/>
                     <Route exact path="/profile" component ={Preferences}/>
+                    <Route exact path="/displayRoutes" component ={MainRoutes}/>
                     {/* <Route path="/" component={Footer}/> */}
                     
                 </div>
