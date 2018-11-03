@@ -36,7 +36,7 @@ nodeApp.post('/createuser', (req,res)=>{
 
 //display route coordinates
 nodeApp.post('/displayroutes',(req,res)=>{
-    let data=myDB.collection('users2').find({"user":"goku@dbz.jp"}).toArray(function(err,result){
+    let data=myDB.collection('users2').find({"user":req.body.user}).toArray(function(err,result){
         let dataToSend;
         if (err) throw err;
         console.log("result", result);

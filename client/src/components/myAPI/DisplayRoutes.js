@@ -26,7 +26,6 @@ export default class DisplayRoutes extends Component{
           headers:{'Content-Type': 'application/json'},
           body:JSON.stringify({  
             'user':this.props.user,
-            'field': 'path', 
           })
         });
         const body = await response.json();
@@ -34,10 +33,9 @@ export default class DisplayRoutes extends Component{
         if (response.status !== 200) throw Error(body.message);
         console.log(body);
         let toState=this.extractPathFromJSON(body);
-        this.setState({reqSent:true,paths:toState});
+        this.setState({reqSent:true,paths:toState}, ()=>{console.log(this.state.paths)});
         return body;
       };
-
 
     render(){    
         let coordsToDisplay=this.state.paths.map((path)=>{
