@@ -5,6 +5,7 @@
   "dependencies": {
     "ajv": "^6.5.4",
     "body-parser": "^1.18.3",
+    "event-stream": "^3.3.4",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "firebase": "^5.5.4",

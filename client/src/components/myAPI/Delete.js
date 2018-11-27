@@ -17,8 +17,7 @@ export default class Delete extends Component{
         return this.props.displayRoute()
         
     }
-
-
+    
     render(){
         return(
             <div>
